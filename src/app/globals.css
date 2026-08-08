@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Fonts */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Colors – primary */
+  --color-blue: #0D47A1;
+  --color-blue-light: #4A90E2;
+  --color-cyan: #00BCD4;
+  --color-cyan-dark: #26C6DA;
+  --color-orange: #FF9800;
+  --color-orange-dark: #FFA726;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Neutrals */
+  --color-gray-50: #F5F7FA;
+  --color-gray-100: #E0E0E0;
+  --color-gray-200: #8A8A8A;
+  --color-gray-300: #4A4A4A;
+  --color-gray-400: #222222;
+
+  /* Dark mode tokens */
+  --color-dark-bg: #121212;
+  --color-dark-surface: #1E1E1E;
+  --color-dark-text: #E0E0E0;
+  --color-dark-muted: #A0A0A0;
+  --color-dark-border: #333333;
+
+  /* Semantic */
+  --color-success: #2E7D32;
+  --color-error: #C62828;
+
+  /* Typography scale */
+  --text-h1: 3rem;
+  --text-h1--line-height: 3.5rem;
+  --text-h1--font-weight: 700;
+  --text-h2: 2.25rem;
+  --text-h2--line-height: 2.75rem;
+  --text-h2--font-weight: 600;
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 2rem;
+  --text-h3--font-weight: 600;
+  --text-h4: 1.25rem;
+  --text-h4--line-height: 1.75rem;
+  --text-h4--font-weight: 500;
+  --text-body: 1rem;
+  --text-body--line-height: 1.625rem;
+  --text-body--font-weight: 400;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.375rem;
+  --text-body-sm--font-weight: 400;
+  --text-button: 0.9375rem;
+  --text-button--line-height: 1.25rem;
+  --text-button--font-weight: 600;
+  --text-button--letter-spacing: 0.5px;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.125rem;
+  --text-caption--font-weight: 400;
+
+  /* Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-88: 22rem;
+
+  /* Border radius */
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-header: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.6s ease-out forwards;
+  --animate-pulse-slow: pulse 3s infinite;
+
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@layer base {
+  /* CSS custom properties that support light/dark mode */
+  :root {
+    --color-primary: var(--color-blue);
+    --color-primary-light: var(--color-blue-light);
+    --color-secondary: var(--color-cyan);
+    --color-secondary-dark: var(--color-cyan-dark);
+    --color-accent: var(--color-orange);
+    --color-accent-dark: var(--color-orange-dark);
+
+    --bg-main: #FFFFFF;
+    --bg-alt: var(--color-gray-50);
+    --text-primary: var(--color-gray-400);
+    --text-body: var(--color-gray-300);
+    --text-muted: var(--color-gray-200);
+    --border-color: var(--color-gray-100);
+
+    --success: var(--color-success);
+    --error: var(--color-error);
+  }
+
+  .dark {
+    --color-primary: var(--color-blue-light);
+    --color-secondary: var(--color-cyan-dark);
+    --color-accent: var(--color-orange-dark);
+
+    --bg-main: var(--color-dark-bg);
+    --bg-alt: var(--color-dark-surface);
+    --text-primary: var(--color-dark-text);
+    --text-body: var(--color-dark-muted);
+    --text-muted: #6A6A6A;
+    --border-color: var(--color-dark-border);
+  }
+
+  html {
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 }
