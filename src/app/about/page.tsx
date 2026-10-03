@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import {
   Lightbulb,
   Heart,
@@ -72,25 +73,25 @@ const processSteps = [
 
 const leadership = [
   {
-    name: "John Tucker",
+    name: "Christopher Tucker",
     role: "Founder & CEO",
     bio: "Visionary leader with 15+ years in IT infrastructure and digital transformation.",
     image: "/images/team/ceo.jpg",
   },
   {
-    name: "Mary Kamara",
+    name: "Joseph Kpaka",
     role: "CTO",
     bio: "Full‑stack architect and cloud expert, passionate about scalable solutions.",
     image: "/images/team/cto.jpg",
   },
   {
-    name: "David Sesay",
+    name: "Mark Jumu",
     role: "Head of Operations",
     bio: "Ensuring smooth delivery and client satisfaction across all projects.",
     image: "/images/team/ops.jpg",
   },
   {
-    name: "Fatima Bangura",
+    name: "Santos Conteh",
     role: "Lead Designer",
     bio: "Creative mind behind user experiences that delight and convert.",
     image: "/images/team/design.jpg",
@@ -146,11 +147,15 @@ export default function AboutPage() {
                 cloud solutions, and cybersecurity – all under one roof.
               </p>
             </div>
-            <div className="aspect-video bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 rounded-2xl flex items-center justify-center">
-              <span className="text-lg text-[var(--text-muted)]">
-                [Company Photo / Office Image]
-              </span>
-            </div>
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-card">
+  <Image
+    src="/images/team/office.jpg"
+    alt="Tucker Tech Solution office"
+    width={800}
+    height={450}
+    className="w-full h-full object-cover"
+  />
+</div>
           </div>
         </div>
       </section>
@@ -276,8 +281,14 @@ export default function AboutPage() {
                 key={person.name}
                 className="bg-[var(--bg-main)] dark:bg-dark-bg rounded-2xl p-6 text-center shadow-card"
               >
-                <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-[var(--color-primary)]/30 to-[var(--color-secondary)]/30 mb-4 flex items-center justify-center">
-                  <span className="text-xs text-[var(--text-muted)]">Photo</span>
+                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-[var(--color-secondary)]/30">
+                  <Image
+                    src={person.image}
+                    alt={person.name}
+                    width={128}
+                    height={128}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">
                   {person.name}
